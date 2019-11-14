@@ -1,0 +1,1434 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="themes/myTheme.css" />
+    <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+ <link rel="stylesheet" href="js/jquery.mobile-1.4.5.css">
+ <script src="js/jquery.js"></script>
+ <script src="js/jquery.mobile-1.4.5.js"></script>
+ <script src="cordova.js"></script>
+ <link rel="stylesheet" href="leaflet/leaflet.css" />
+ <script src="leaflet/leaflet.js"></script>
+ <script type="text/javascript" src="recycle.js">
+ </script>
+
+<style>
+* {box-sizing: border-box}
+body {font-family: Verdana, sans-serif; margin:0}
+.mySlides {display: none}
+#img {vertical-align: middle;
+height: 300px;
+width: 450px;}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 450px;
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
+}
+.recycle-table td img{
+width:150px;
+height:250px;
+}
+
+.imgOffer img{
+width: 150px;
+margin-top: 25px;
+
+}
+
+.offer{
+  width:300px;
+  position: absolute;
+  left: 170px;
+  bottom:600px;
+  padding: 5px;
+
+}
+.hazardous{
+height: 100px;
+  background-color: red;
+}
+.txtcenter{
+color: white;
+position: relative;
+
+
+}
+.green{
+  background-color: green;
+  height: 50px;
+  font-size: 10px;
+
+}
+.emphasize{
+  color: red;
+  text-weight:bold;
+}
+
+#myImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+
+#footer{
+  background-color: Green;
+  color: white;
+}
+#image img{
+  border: 1px solid #ddd;
+ border-radius: 4px;
+ padding: 5px;
+ width: 250px;
+display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#video{
+  width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+display: block;
+align-items: center;
+}
+
+#head{
+  background-color: rgb(102, 255, 51);
+  color: white;
+}
+.imgRecycle img{
+  height:100px;
+  width:100px;
+}
+.Rgreen{
+  position: absolute;
+  left:175px;
+  top:200px;
+    padding-top: 100px;
+}
+.Rpaper{
+position:absolute;
+  top:350px;
+  right:90px;
+    padding-top: 50px;
+
+}
+.Rplastic{
+  position: absolute;
+  top:400px;
+  left:50px;
+
+
+}
+.Rglass{
+  position: absolute;
+  left:50px;
+    padding-top: 100px;
+}
+.Rbattery{
+  position: absolute;
+  left:300px;
+  padding-top: 100px;
+}
+figcaption{
+  color: green;
+  font-family: Arial;
+}
+
+</style>
+
+
+</head>
+
+
+<body>
+  <div data-role="page" id="pageone" data-theme="a">
+    <div data-role="header" id="head">
+<h2 >GO GREEN!</h2>
+      <div data-role="navbar">
+        <ul>
+          <li><a href="#pageone" data-icon="home" class="ui-btn-active  ui-state-persist" >Home</a></li>
+            <li><a href="#pagetwo" data-icon="recycle">Recycle</a></li>
+              <li><a href="#pagethree" data-icon="location">Disposal</a></li>
+        </ul>
+    </div>
+
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <!--start slideshow-->
+    <div class="slideshow-container">
+
+      <div class="mySlides fade">
+      <img id="img" src="image/quote2.jpg"></img>
+      <div class="text">Caption 1</div>
+    </div>
+
+    <div class="mySlides fade">
+      <img id="img" src="image/quote4.jpg"></img>
+        <div class="text">We don't inherit the earth from our ancestors;
+        we borrow it from our children.</div>
+      </div>
+
+      <div class="mySlides fade">
+        <img id="img" src="image/quote3.jpg"></img>
+           <div class="text"></div>
+         </div>
+
+           <div class="mySlides fade">
+             <img id="img" src="image/quote5.jpg"></img>
+                <div class="text"></div>
+
+    </div>
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+    </div>
+    <br />
+    <div style="text-align:center">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+          <span class="dot" onclick="currentSlide(4)"></span>
+    </div>
+    <script>
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+      }
+      for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex-1].style.display = "block";
+      dots[slideIndex-1].className += " active";
+    }
+    </script>
+    <div class="imgOffer">
+      <img  id="img" src="image/goGreen.jpg"></img>
+    </div>
+    <div class="offer">
+      <p style="font-size:1.3em;font-family:arial; text-decoration:underline;font-weight:bold;text-decoration-color:green">
+        What we offer</p>
+      <p>Here some of the features which is provided by the application to promote recycling</p>
+    </div>
+<hr />
+<h5>Sustainable Mauritius</h5>
+    <span>Recycling is relevant, not to say vital, to a country like Mauritius which has almost no natural resources.
+      Everything we use in our daily life is made from raw materials like timber for paper and petroleum for glass and plastic.
+      Recycling allows us to bypass primary sources of raw materials. This not only saves money, but is also more environmentally sustainable.
+    </span>
+    <p>In 2018, Mare-Chicose received 543,196 tonnes of waste, a 12.7 per cent increase of the 482,196 tonnes landfilled there in 2017.
+      At this rate, the authorities predict the biggest landfill of the island will reach saturation point by 2020.
+       Recycling part of the waste sent to landfills would help delay this deadline.</p>
+
+
+       <hr/>
+  </div>
+
+   <div data-role="footer">
+
+    <div data-role="navbar">
+    	<ul>
+    <li><a href="#pageone" data-icon="home" class="ui-btn-active  ui-state-persist"></a></li>
+        <li><a href="#" data-icon="calendar"></a></li>
+          <li><a href="#" data-icon="comment"></a></li>
+            <li><a href="page_profile" data-icon="user"></a></li>
+    	</ul>
+    	</div>
+		</div>
+</div>
+<!---end of home--->
+
+
+<!---start of page recycle--->
+<div data-role="page" id="pagetwo" data-theme="a">
+  <div data-role="header" id="head">
+<h2>GO GREEN!</h2>
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#pageone" data-icon="home">Home</a></li>
+          <li><a href="#pagetwo" data-icon="recycle" class="ui-btn-active ui-state-persist">Recycle</a></li>
+            <li><a href="#pagethree" data-icon="location">Disposal</a></li>
+      </ul>
+  </div>
+</div>
+
+<div data-role="main" class="ui-content">
+
+
+  <div class="imgRecycle">
+    <span class="Rgreen">
+            <img src="image/recycleImage.jpg"></img>
+
+    </span>
+    <span class="Rglass">
+      <a href="#page_glass">
+      <img src="image/R_glasses.jpg"></img>
+        <figcaption align="center">GLASS</figcaption>
+    </a>
+
+    </span>
+    <span class="Rpaper">
+      <a href="#page_paper">
+      <img src="image/R_paper.jpg"></img>
+          <figcaption align="center">PAPER</figcaption>
+    </a>
+
+    </span>
+    <span class="Rbattery">
+      <a href="#pagehazardous">
+    <img src="image/R_battery.jpg"></img>
+      <figcaption align="center">HAZARDOUS</figcaption>
+  </a>
+
+    </span>
+    <span class="Rplastic">
+      <a href="#page_plastic">
+    <img src="image/R_plastic.jpg"></img>
+      <figcaption align="center">PLASTIC</figcaption>
+  </a>
+
+    </span>
+  </div>
+
+</div>
+
+		</div>
+</div>
+<!---end of recycle page--->
+
+<!---start of geo--->
+<div data-role="page" id="pagethree" data-theme="a">
+  <div data-role="header" id="head">
+<h3>Go Green</h3>
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#pageone" data-icon="home">Home</a></li>
+          <li><a href="#pagetwo" data-icon="recycle">Recycle</a></li>
+            <li><a href="#pagethree" data-icon="location" class="ui-btn-active ui-state-persist">Disposal</a></li>
+      </ul>
+  </div>
+</div>
+
+<div data-role="main" class="ui-content">
+  <form>
+    <input id="filterTable" data-type="search">
+  </form>
+  <table data-role="table" data-mode="" class="ui-responsive table-stroke">
+    <thead>
+      <tr>
+        <th>SN</th>
+        <th>Transfer Stations</th>
+        <th>Year of operation</th>
+        <th>Capacity (tons/day)</th>
+        <th><abbr title="Average quantity transfered(tons/month)">Average Tons/month</abbr></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="color: blue">
+        <td>1</td>
+          <td>La Brasserie</td>
+            <td>1991</td>
+              <td>150 to 300</td>
+                <td>6,552</td>
+      </tr>
+      <tr style="color: red">
+        <td>2</td>
+          <td>Roche Bois</td>
+            <td>1992</td>
+              <td>300 to 400</td>
+                <td>6,308</td>
+      </tr>
+      <tr style="color: green">
+        <td>3</td>
+          <td>Poudre D'or</td>
+            <td>2000</td>
+              <td>150 to 180</td>
+                <td>4,426</td>
+      </tr>
+      <tr style="color:purple">
+        <td>4</td>
+          <td>La Laura</td>
+            <td>2005</td>
+              <td>100 to 150</td>
+                <td>3,276</td>
+      </tr>
+      <tr>
+        <td>5</td>
+          <td>La Chaumiere</td>
+            <td>2011</td>
+              <td>350 to 450</td>
+                <td>10,000</td>
+      </tr>
+
+    </tbody>
+  </table>
+<!--start of map-->
+       <div id="mapid" style="width:600px; height:400px;"></div>
+       <script>
+       //var mymap = L.map('mapid').setView([-20.16527900, 57.4963800], 10);
+       var mymap = L.map('mapid').setView([-20.148041, 57.5057712], 10);
+        //var mymap = L.map('mapid').setView([-20.148041, 57.5057712], 10);
+       L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+       maxZoom: 19,
+       attribution: 'Map data &copy;'+
+       '<a href="https://www.openstreetmap.org/">OpenStreetMap</a>'+
+       'contributors,<a href="https://creativecommons.org/licenses'+
+       '/by-sa/2.0/">CC-BY-SA</a>,Imagery � <a href="https://'+
+       'www.mapbox.com/">Mapbox</a>',
+       id: 'mapbox.streets',
+       accessToken:'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYyc'+
+       'XBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw'
+
+       }).addTo(mymap);
+       //var marker = L.marker([-20.16527900, 57.4963800]).addTo(mymap);
+         var brasserie_marker=L.marker([-20.3292773,57.5249932]).addTo(mymap);
+            var rocheBois_marker = L.marker([-20.148041, 57.5057712]).addTo(mymap);
+            var PoudreDor_marker = L.marker([-20.0618584,57.6788724]).addTo(mymap);
+            var laLaura_marker=L.marker([-20.2380385,57.4728967]).addTo(mymap);
+            //var laChaumiere_marker=L.marker([-20.2373387,57.4728963]).addTo(mymap);
+
+       rocheBois_marker.bindPopup("Roche Bois");
+       brasserie_marker.bindPopup("Brasserie");
+       PoudreDor_marker.bindPopup("Poudre Dor");
+       laLaura_marker.bindPopup("La Laura");
+       //laChaumiere_marker.bindPopup("La Chaumiere");
+
+       //var circle = L.circle([-20.16527900, 57.4963800], {
+       var circle = L.circle([-20.3292773,57.5249932], {
+      color: 'blue',
+      fillColor: '#f03',
+      fillOpacity: 0.5,
+      radius: 100
+      }).addTo(mymap);
+
+      circle.bindPopup("Brasserie");
+
+        var circle = L.circle([-20.148041, 57.5057712], {
+       color: 'red',
+       fillColor: '#f03',
+       fillOpacity: 0.5,
+       radius: 100
+       }).addTo(mymap);
+
+       circle.bindPopup("Roche Bois");
+
+       var circle_PoudreDor = L.circle([-20.0618584,57.6788724], {
+      color: 'green',
+      fillColor: '#f03',
+      fillOpacity: 0.5,
+      radius: 100
+      }).addTo(mymap);
+
+      circle_PoudreDor.bindPopup("Poudre Dor");
+
+      var circle_laLaura = L.circle([-20.2380385,57.4728967], {
+     color: 'purple',
+     fillColor: '#f03',
+     fillOpacity: 0.5,
+     radius: 100
+     }).addTo(mymap);
+
+     circle_PoudreDor.bindPopup("La Laura");
+
+       </script>
+
+<!--end of map-->
+</div>
+
+  <div data-role="footer">
+    <div data-role="navbar">
+    	<ul>
+    <li><a href="#pageone" data-icon="home"></a></li>
+        <li><a href="#" data-icon="calendar"></a></li>
+          <li><a href="#" data-icon="comment"></a></li>
+            <li><a href="page_profile" data-icon="user"></a></li>
+    	</ul>
+    	</div>
+		</div>
+</div>
+<!--end of page geo-->
+
+
+<!--start page hazardous-->
+<div data-role="page" id="pagehazardous" data-theme="a">
+ <div data-role="header" id="head">
+<div class="hazardous">
+      <span class="txtcenter">HOUSEHOLD BATTERIES</span>
+    </div>
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#pageone" data-icon="home">Home</a></li>
+          <li><a href="#pagetwo" data-icon="recycle" class="ui-btn-active ui-state-persist">Recycle</a></li>
+            <li><a href="#pagethree" data-icon="location">Disposal</a></li>
+      </ul>
+  </div>
+</div>
+
+  <div data-role="main" class="ui-content">
+<h6>Hazardous Waste</h6>
+    <img id="img" src="image/batteriesjpg.jpg"></img>
+    <p>When batteries are not properly disposed of the casing can disintegrate and the toxic chemicals within can
+      leach into the surrounding environment.
+      The leaking material can contaminate the soil and water and some of the elements can accumulate in wildlife and humans.</p>
+      <div class="ui-field-contain">
+    select name="select-native-1" id="select-native-1">
+    <option value="1">Steel Scrap Ltd. Plaine Lauzan, Port Louis</option>
+    <option value="2">Tradeway International Ltd R. Seeneevasen Street, Port Louis</option>
+
+    </select>
+    </div>
+</div>
+
+  <div data-role="footer">
+    <div data-role="navbar">
+    	<ul>
+    <li><a href="#pageone" data-icon="home"></a></li>
+        <li><a href="#" data-icon="calendar"></a></li>
+          <li><a href="#" data-icon="comment"></a></li>
+            <li><a href="#page_profile" data-icon="user"></a></li>
+    	</ul>
+    	</div>
+		</div>
+</div>
+<!--end page hazardous-->
+
+<!--start page glass-->
+<div data-role="page" id="page_glass" data-theme="a">
+  <div data-role="header" id="head">
+    <h3>GO GREEN!</h3>
+
+ <div data-role="navbar">
+      <ul>
+        <li><a href="#pageone" data-icon="home">Home</a></li>
+          <li><a href="#pagetwo" data-icon="recycle" class="ui-btn-active ui-state-persist">Recycle</a></li>
+            <li><a href="#pagethree" data-icon="location">Disposal</a></li>
+      </ul>
+  </div>
+  </div>
+  <div data-role="main" class="ui-content">
+    <div>
+      <h3 style="text-align:center">GLASS RECYCLE</h3>
+    </div>
+    <img id="img" src="image/glasses.jpg"></img>
+<h4>Tips for recycling glass</h4>
+  <p>Following a few simple tips makes glass recycling easier:</p>
+  <ul>
+    <li>Rinse bottles and jars to remove food waste.</li>
+    <li>Remove lids from jars and bottles.</li>
+    <li>Try not to break the glass. Although the glass will eventually be broken, solid containers are safer and easier to sort.</li>
+  </ul>
+<a href="#glass_image" class="ui-btn ui-icon-carat-r ui-btn-icon-right">DIY images</a>
+<a href="#glass_video" class="ui-btn ui-icon-carat-r ui-btn-icon-right">DIY videos</a>
+</div>
+
+  <div data-role="footer">
+    <div data-role="navbar">
+    	<ul>
+    <li><a href="#pageone" data-icon="home"></a></li>
+        <li><a href="#" data-icon="calendar"></a></li>
+          <li><a href="#" data-icon="comment"></a></li>
+            <li><a href="#page_profile" data-icon="user"></a></li>
+    	</ul>
+    	</div>
+		</div>
+</div>
+<!--end page glass-->
+
+
+<!--start page paper-->
+<div data-role="page" id="page_paper" data-theme="a">
+<div data-role="header" id="head">
+<h3>GO GREEN!</h3>
+
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#pageone" data-icon="home">Home</a></li>
+          <li><a href="#pagetwo" data-icon="recycle" class="ui-btn-active ui-state-persist">Recycle</a></li>
+            <li><a href="#pagethree" data-icon="location">Disposal</a></li>
+      </ul>
+  </div>
+</div>
+
+  <div data-role="main" class="ui-content">
+
+  <div>
+        <h3 style="text-align:center">PAPER RECYCLE</h3>
+      </div>
+    <img id="img" src="image/paper.jpg"></img>
+<h4>Tips for recycling paper</h4>
+<ol>
+  <li>Recycle in garden</li>
+  <p><b>Turn newspaper and office paper into mulch.</b>
+    <span>Tear the paper into strips, and layer it around your plants. This will help prevent weed growth and will keep the soil moist.
+      The paper will eventually decompose and help give nutrients to the soil.</span>
+  </p>
+      <li><b>Add newspaper to the compost</b></li>
+      <span>Newspaper will add carbon to a well-balanced compost pile, and is classed as "brown."</span>
+    </ol>
+  <p> Any type of paper can be used in this process, with a few <span class="emphasize">exceptions</span>:</p>
+<ul>
+    <li>Used tissue paper</li>
+    <li>Paper stained with food, dirt or paint</li>
+    <li>Paper with adhesive on it such as sticky labels</li>
+</ul>
+
+<a href="#paper_image" class="ui-btn ui-icon-carat-r ui-btn-icon-right">DIY images</a>
+<a href="#paper_video" class="ui-btn ui-icon-carat-r ui-btn-icon-right">DIY videos</a>
+</div>
+
+  <div data-role="footer">
+    <div data-role="navbar">
+    	<ul>
+    <li><a href="#pageone" data-icon="home"></a></li>
+        <li><a href="#" data-icon="calendar"></a></li>
+          <li><a href="#" data-icon="comment"></a></li>
+            <li><a href="#page_profile" data-icon="user"></a></li>
+    	</ul>
+    	</div>
+		</div>
+</div>
+<!--end page paper-->
+
+
+<!--start page plastic-->
+<div data-role="page" id="page_plastic" data-theme="a">
+<div data-role="header" id="head">
+  <h3>GO GREEN!</h3>
+
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#pageone" data-icon="home">Home</a></li>
+          <li><a href="#pagetwo" data-icon="recycle" class="ui-btn-active ui-state-persist">Recycle</a></li>
+            <li><a href="#pagethree" data-icon="location">Disposal</a></li>
+      </ul>
+  </div>
+</div>
+
+  <div data-role="main" class="ui-content">
+    <div>
+          <h3 style="text-align:center">PLASTIC RECYCLE</h3>
+        </div>
+    <img id="img" src="image/plastic.jpg"></img>
+<h4>Tips for recycling plastic</h4>
+<ul>
+<li>Empty plastic bottles and containers before you recycle.</li>
+<li>Give them a quick rinse.</li>
+<li>Remove pumps from liquid soap and cleaning product bottles as these are not recyclable.</li>
+<li>Squash plastic drinks bottles to save space in your recycling container.</li>
+</ul>
+
+<a href="#plastic_image" class="ui-btn ui-icon-carat-r ui-btn-icon-right">DIY images</a>
+<a href="#plastic_video" class="ui-btn ui-icon-carat-r ui-btn-icon-right">DIY videos</a>
+</div>
+
+  <div data-role="footer">
+    <div data-role="navbar">
+    	<ul>
+    <li><a href="#pageone" data-icon="home"></a></li>
+        <li><a href="#" data-icon="calendar"></a></li>
+          <li><a href="#" data-icon="comment"></a></li>
+            <li><a href="#page_profile" data-icon="user"></a></li>
+    	</ul>
+    	</div>
+		</div>
+</div>
+<!--end page plastic-->
+
+<!--start plastic image-->
+<div data-role="page" id="plastic_image" data-theme="a">
+  <div data-role="header" id="head">
+    <h3>GO GREEN!</h3>
+
+ <div data-role="navbar">
+      <ul>
+        <li><a href="#pageone" data-icon="home">Home</a></li>
+          <li><a href="#pagetwo" data-icon="recycle" class="ui-btn-active ui-state-persist">Recycle</a></li>
+            <li><a href="#pagethree" data-icon="location">Disposal</a></li>
+      </ul>
+  </div>
+  </div>
+  <div data-role="main" class="ui-content">
+    <div>
+      <h3 style="text-align:center">PLASTIC RECYCLE</h3>
+    </div>
+  <div class="row">
+      <div id="image" >
+        <a href="#popupPhotoPortrait" data-rel="popup" data-position-to="window" data-transition="fade"><img src="image/plastic1.jpg"></img></a>
+      </div>
+
+
+      <div id="image">
+           <a href="#popupPhotoPortrait2" data-rel="popup" data-position-to="window" data-transition="fade"><img src="image/plastic2.jpg"></img></a>
+      </div>
+
+      <div id="image">
+          <a href="#popupPhotoPortrait3" data-rel="popup" data-position-to="window" data-transition="fade"><img src="image/plastic3.jpg"></img></a>
+      </div>
+
+      <div id="image">
+           <a href="#popupPhotoPortrait4" data-rel="popup" data-position-to="window" data-transition="fade"><img src="image/plastic4.jpg"></img></a>
+      </div>
+
+      <div id="image">
+           <a href="#popupPhotoPortrait5" data-rel="popup" data-position-to="window" data-transition="fade"><img src="image/plastic5.jpg"></img></a>
+      </div>
+
+      <div id="image">
+        <a href="#popupPhotoPortrait6" data-rel="popup" data-position-to="window" data-transition="fade"><img src="image/plastic6straw.jpg"></img></a>
+      </div>
+
+      <div id="image">
+          <a href="#popupPhotoPortrait7" data-rel="popup" data-position-to="window" data-transition="fade"><img src="image/plastic7.jpg"></img></a>
+      </div>
+
+      <div id="image">
+          <a href="#popupPhotoPortrait8" data-rel="popup" data-position-to="window" data-transition="fade"><img src="image/plastic8.jpg"></img></a>
+      </div>
+</div>
+
+<div data-role="popup" id="popupPhotoPortrait" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerence="30,15">
+  <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="image/plastic1.jpg">
+</div>
+
+<div data-role="popup" id="popupPhotoPortrait2" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerence="30,15">
+  <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="image/plastic2.jpg">
+</div>
+
+<div data-role="popup" id="popupPhotoPortrait3" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerence="30,15">
+  <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="image/plastic3.jpg">
+</div>
+
+<div data-role="popup" id="popupPhotoPortrait4" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerence="30,15">
+  <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="image/plastic4.jpg">
+</div>
+
+<div data-role="popup" id="popupPhotoPortrait5" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerence="30,15">
+  <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="image/plastic5.jpg">
+</div>
+
+<div data-role="popup" id="popupPhotoPortrait6" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerence="30,15">
+  <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="image/plastic6straw.jpg">
+</div>
+
+<div data-role="popup" id="popupPhotoPortrait7" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerence="30,15">
+  <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="image/plastic7.jpg">
+</div>
+
+<div data-role="popup" id="popupPhotoPortrait8" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerence="30,15">
+  <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="image/plastic8.jpg">
+</div>
+
+     <div data-role="footer">
+    <div data-role="navbar">
+    	<ul>
+    <li><a href="#pageone" data-icon="home"></a></li>
+        <li><a href="#" data-icon="calendar"></a></li>
+          <li><a href="#" data-icon="comment"></a></li>
+            <li><a href="#page_profile" data-icon="user"></a></li>
+    	</ul>
+    	</div>
+		</div>
+
+ <script>
+$(document).on("pagecreate", function(){
+  $(".photopopup").on({
+    popupbeforeposition: function(){
+      var maxHeight = $(window).height()-60 + "px";
+      $(".photopopup img").css("max-height", maxHeight);
+    }
+  });
+});
+</script>
+
+</div>
+</div>
+<!--end plastic image-->
+
+
+<div data-role="page" id="plastic_video" data-theme="a">
+  <div data-role="header" id="head">
+    <h3>GO GREEN!</h3>
+
+ <div data-role="navbar">
+      <ul>
+        <li><a href="#pageone" data-icon="home">Home</a></li>
+          <li><a href="#pagetwo" data-icon="recycle" class="ui-btn-active ui-state-persist">Recycle</a></li>
+            <li><a href="#pagethree" data-icon="location">Disposal</a></li>
+      </ul>
+  </div>
+  </div>
+  <div data-role="main" class="ui-content">
+    <div>
+      <h3 style="text-align:center">PLASTIC RECYCLE</h3>
+    </div>
+  <div id="video">
+          <iframe type="text/html" src="https://www.youtube.com/embed/uZt6iZB9aTg"></iframe>
+      </div>
+
+      <div id="video">
+        <iframe src="https://www.youtube.com/embed/UdCRGe-AXiY"></iframe>
+      </div>
+
+      <div id="video">
+      <iframe src="https://www.youtube.com/embed/Fcvh_NSRoNM"></iframe>
+      </div>
+
+<div id="video">
+     <iframe src="https://www.youtube.com/embed/9c3gKV9R08E"></iframe>
+</div>
+
+<div id="video">
+<iframe src="https://www.youtube.com/embed/Omz5uGrgq44"></iframe>
+</div>
+
+<div id="video">
+<iframe src="https://www.youtube.com/embed/0Tqq4iqVJgc"></iframe>
+</div>
+
+<div id="video">
+<iframe src="https://www.youtube.com/embed/zFwiqaHrLZo"></iframe>
+</div>
+
+    </div>
+
+      <div data-role="footer">
+    <div data-role="navbar">
+    	<ul>
+    <li><a href="#pageone" data-icon="home"></a></li>
+        <li><a href="#" data-icon="calendar"></a></li>
+          <li><a href="#" data-icon="comment"></a></li>
+            <li><a href="#page_profile" data-icon="user"></a></li>
+    	</ul>
+    	</div>
+		</div>
+
+    </div>
+  </div>
+<!--end page paper-->
+
+
+<!--start glass image-->
+<div data-role="page" id="glass_image" data-theme="a">
+  <div data-role="header" id="head">
+    <h3>GO GREEN!</h3>
+
+ <div data-role="navbar">
+      <ul>
+        <li><a href="#pageone" data-icon="home">Home</a></li>
+          <li><a href="#pagetwo" data-icon="recycle" class="ui-btn-active ui-state-persist">Recycle</a></li>
+            <li><a href="#pagethree" data-icon="location">Disposal</a></li>
+      </ul>
+  </div>
+  </div>
+  <div data-role="main" class="ui-content">
+
+           <div>
+             <h3 style ="text-align:center">GLASS RECYCLE</h3>
+           </div>
+            <div class="row">
+      <div id="image" >
+        <a href="#popupPhotoPortrait17" data-rel="popup" data-position-to="window" data-transition="fade"><img src="image/Glass1.jpg"></img></a>
+      </div>
+
+
+      <div id="image">
+           <a href="#popupPhotoPortrait18" data-rel="popup" data-position-to="window" data-transition="fade"><img src="image/Glass2.jpg"></img></a>
+      </div>
+
+      <div id="image">
+          <a href="#popupPhotoPortrait19" data-rel="popup" data-position-to="window" data-transition="fade"><img src="image/Glass3.jpg"></img></a>
+      </div>
+
+      <div id="image">
+           <a href="#popupPhotoPortrait20" data-rel="popup" data-position-to="window" data-transition="fade"><img src="image/Glass4.jpg"></img></a>
+      </div>
+
+      <div id="image">
+           <a href="#popupPhotoPortrait21" data-rel="popup" data-position-to="window" data-transition="fade"><img src="image/Glass5.jpg"></img></a>
+      </div>
+
+      <div id="image">
+        <a href="#popupPhotoPortrait22" data-rel="popup" data-position-to="window" data-transition="fade"><img src="image/Glass6.jpg"></img></a>
+      </div>
+
+      <div id="image">
+          <a href="#popupPhotoPortrait23" data-rel="popup" data-position-to="window" data-transition="fade"><img src="image/Glass7.jpg"></img></a>
+      </div>
+
+      <div id="image">
+          <a href="#popupPhotoPortrait24" data-rel="popup" data-position-to="window" data-transition="fade"><img src="image/Glass8.jpg"></img></a>
+      </div>
+</div>
+
+<div data-role="popup" id="popupPhotoPortrait17" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerence="30,15">
+  <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="image/Glass1.jpg">
+</div>
+
+<div data-role="popup" id="popupPhotoPortrait18" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerence="30,15">
+  <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="image/Glass2.jpg">
+</div>
+
+<div data-role="popup" id="popupPhotoPortrait19" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerence="30,15">
+  <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="image/Glass3.jpg">
+</div>
+
+<div data-role="popup" id="popupPhotoPortrait20" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerence="30,15">
+  <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="image/Glass4.jpg">
+</div>
+
+<div data-role="popup" id="popupPhotoPortrait21" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerence="30,15">
+  <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="image/Glass5.jpg">
+</div>
+
+<div data-role="popup" id="popupPhotoPortrait22" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerence="30,15">
+  <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="image/Glass6.jpg">
+</div>
+
+<div data-role="popup" id="popupPhotoPortrait23" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerence="30,15">
+  <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="image/Glass7.jpg">
+</div>
+
+<div data-role="popup" id="popupPhotoPortrait24" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerence="30,15">
+  <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="image/Glass8.jpg">
+</div>
+
+      <div data-role="footer">
+    <div data-role="navbar">
+    	<ul>
+    <li><a href="#pageone" data-icon="home"></a></li>
+        <li><a href="#" data-icon="calendar"></a></li>
+          <li><a href="#" data-icon="comment"></a></li>
+            <li><a href="#page_profile" data-icon="user"></a></li>
+    	</ul>
+    	</div>
+		</div>
+ <script>
+    $( "#mypanel" ).trigger( "updatelayout" );
+  </script>
+
+</div>
+</div>
+<!--end glass image-->
+
+<!--start glass video-->
+<div data-role="page" id="glass_video" data-theme="a">
+  <div data-role="header" id="head">
+    <h3>GO GREEN!</h3>
+
+<div data-role="navbar">
+      <ul>
+        <li><a href="#pageone" data-icon="home">Home</a></li>
+          <li><a href="#pagetwo" data-icon="recycle" class="ui-btn-active ui-state-persist">Recycle</a></li>
+            <li><a href="#pagethree" data-icon="location">Disposal</a></li>
+      </ul>
+  </div>
+  </div>
+  <div data-role="main" class="ui-content">
+    <div>
+      <h3 style="text-align: center">GLASS RECYCLE</h3>
+    </div>
+   <div id="video">
+          <iframe type="text/html" src="https://www.youtube.com/embed/DnMPLb0HRrA"></iframe>
+      </div>
+
+      <div id="video">
+        <iframe src="https://www.youtube.com/embed/eCBidterCTk"></iframe>
+      </div>
+
+      <div id="video">
+      <iframe src="https://www.youtube.com/embed/FScQapZlAP4"></iframe>
+      </div>
+
+  <div id="video">
+     <iframe src="https://www.youtube.com/embed/93YgR4z744A"></iframe>
+  </div>
+
+  <div id="video">
+  <iframe src="https://www.youtube.com/embed/XzBclHg8i0o"></iframe>
+  </div>
+
+  <div id="video">
+  <iframe src="https://www.youtube.com/embed/sTXOVnIhe6I"></iframe>
+  </div>
+
+  <div id="video">
+  <iframe src="https://www.youtube.com/embed/6qsW_ipcUUI"></iframe>
+  </div>
+
+  <iframe src="https://www.youtube.com/embed/BAV02AIj46o"></iframe>
+  </div>
+    </div>
+  <div data-role="footer">
+    <div data-role="navbar">
+    	<ul>
+    <li><a href="#pageone" data-icon="home"></a></li>
+        <li><a href="#" data-icon="calendar"></a></li>
+          <li><a href="#" data-icon="comment"></a></li>
+            <li><a href="#page_profile" data-icon="user"></a></li>
+    	</ul>
+    	</div>
+		</div>
+
+    </div>
+  </div>
+<!--end page glass-->
+
+
+<!--start page paper-->
+<div data-role="page" id="paper_image" data-theme="a">
+  <div data-role="header" id="head">
+    <h3>GO GREEN!</h3>
+
+<div data-role="navbar">
+      <ul>
+        <li><a href="#pageone" data-icon="home">Home</a></li>
+          <li><a href="#pagetwo" data-icon="recycle" class="ui-btn-active ui-state-persist">Recycle</a></li>
+            <li><a href="#pagethree" data-icon="location">Disposal</a></li>
+      </ul>
+  </div>
+  </div>
+  <div data-role="main" class="ui-content">
+    <div>
+      <h3 style="text-align:center">PAPER RECYCLE</h3>
+    </div>
+    <div class="row">
+      <div id="image" >
+        <a href="#popupPhotoPortrait9" data-rel="popup" data-position-to="window" data-transition="fade"><img src="image/paper1.jpg"></img></a>
+      </div>
+
+
+      <div id="image">
+           <a href="#popupPhotoPortrait10" data-rel="popup" data-position-to="window" data-transition="fade"><img src="image/paper2.jpg"></img></a>
+      </div>
+
+      <div id="image">
+          <a href="#popupPhotoPortrait11" data-rel="popup" data-position-to="window" data-transition="fade"><img src="image/paper3.jpg"></img></a>
+      </div>
+
+      <div id="image">
+           <a href="#popupPhotoPortrait12" data-rel="popup" data-position-to="window" data-transition="fade"><img src="image/paper4.jpg"></img></a>
+      </div>
+
+      <div id="image">
+           <a href="#popupPhotoPortrait13" data-rel="popup" data-position-to="window" data-transition="fade"><img src="image/paper5.jpg"></img></a>
+      </div>
+
+      <div id="image">
+        <a href="#popupPhotoPortrait14" data-rel="popup" data-position-to="window" data-transition="fade"><img src="image/paper6.jpg"></img></a>
+      </div>
+
+      <div id="image">
+          <a href="#popupPhotoPortrait15" data-rel="popup" data-position-to="window" data-transition="fade"><img src="image/paper7.jpg"></img></a>
+      </div>
+
+    </div>
+
+<div data-role="popup" id="popupPhotoPortrait9" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerence="30,15">
+  <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="image/paper1.jpg">
+</div>
+
+<div data-role="popup" id="popupPhotoPortrait10" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerence="30,15">
+  <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="image/paper2.jpg">
+</div>
+
+<div data-role="popup" id="popupPhotoPortrait11" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerence="30,15">
+  <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="image/paper3.jpg">
+</div>
+
+<div data-role="popup" id="popupPhotoPortrait12" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerence="30,15">
+  <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="image/paper4.jpg">
+</div>
+
+<div data-role="popup" id="popupPhotoPortrait13" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerence="30,15">
+  <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="image/paper5.jpg">
+</div>
+
+<div data-role="popup" id="popupPhotoPortrait14" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerence="30,15">
+  <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="image/paper6.jpg">
+</div>
+
+<div data-role="popup" id="popupPhotoPortrait15" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerence="30,15">
+  <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="image/paper7.jpg">
+</div>
+
+
+    <div data-role="footer">
+    <div data-role="navbar">
+    	<ul>
+    <li><a href="#pageone" data-icon="home"></a></li>
+        <li><a href="#" data-icon="calendar"></a></li>
+          <li><a href="#" data-icon="comment"></a></li>
+            <li><a href="#page_profile" data-icon="user"></a></li>
+    	</ul>
+    	</div>
+		</div>
+<script>
+$(document).on("pagecreate", function(){
+  $(".photopopup").on({
+    popupbeforeposition: function(){
+      var maxHeight = $(window).height()-60 + "px";
+      $(".photopopup img").css("max-height", maxHeight);
+    }
+  });
+});
+</script>
+
+</div>
+</div>
+<!--end page paper-->
+
+
+<!--start page paper-->
+<div data-role="page" id="paper_video" data-theme="a">
+  <div data-role="header" id="head">
+    <h3>GO GREEN!</h3>
+<div data-role="navbar">
+      <ul>
+        <li><a href="#pageone" data-icon="home">Home</a></li>
+          <li><a href="#pagetwo" data-icon="recycle">Recycle</a></li>
+            <li><a href="#pagethree" data-icon="location" class="ui-btn-active ui-state-persist">Disposal</a></li>
+      </ul>
+  </div>
+  </div>
+  <div data-role="main" class="ui-content">
+    <div>
+      <h3 style="text-align: center">PAPER RECYCLE</h3>
+    </div>
+<div id="video">
+          <iframe type="text/html" src="https://www.youtube.com/embed/QMrauIZ24jc"></iframe>
+      </div>
+
+      <div id="video">
+        <iframe src="https://www.youtube.com/embed/ont8xeZOnzQ"></iframe>
+      </div>
+
+      <div id="video">
+      <iframe src="https://www.youtube.com/embed/nDt9C8-rPpI"></iframe>
+      </div>
+
+<div id="video">
+     <iframe src="https://www.youtube.com/embed/vzYfXlnOz-g"></iframe>
+</div>
+
+<div id="video">
+<iframe src="https://www.youtube.com/embed/8Olg-bBCjvo"></iframe>
+</div>
+
+<div id="video">
+<iframe src="https://www.youtube.com/embed/BdhWEbTOl4s"></iframe>
+</div>
+
+<div id="video">
+<iframe src="https://www.youtube.com/embed/PhxTictYIJI"></iframe>
+</div>
+
+<div id="video">
+<iframe src="https://www.youtube.com/embed/C01A27JDLls"></iframe>
+</div>
+    </div>
+
+     <div data-role="footer">
+    <div data-role="navbar">
+    	<ul>
+    <li><a href="#pageone" data-icon="home"></a></li>
+        <li><a href="#" data-icon="calendar"></a></li>
+          <li><a href="#" data-icon="comment"></a></li>
+            <li><a href="#page_profile" data-icon="user"></a></li>
+    	</ul>
+    	</div>
+		</div>
+
+    </div>
+  </div>
+<!--end page paper-->
+
+<div data-role="page" id="register" data-theme="a">
+  <div data-role="header" id="head">
+    <h3>GO GREEN!</h3>
+<div data-role="navbar">
+      <ul>
+        <li><a href="#pageone" data-icon="home">Home</a></li>
+          <li><a href="#pagetwo" data-icon="recycle">Recycle</a></li>
+            <li><a href="#pagethree" data-icon="location" class="ui-btn-active ui-state-persist">Disposal</a></li>
+      </ul>
+  </div>
+  </div>
+
+<div data-role="main" class="ui-content">
+<div>
+  <h3 style="text-align:center">Registration Form</h3>
+</div>
+<form method="post" onSubmit="return submitForm()">
+
+<label class="ui-hidden-accessible">name</label>
+<input name="name" type="text" placeholder="name"/>
+
+
+
+
+<label class="ui-hidden-accessible">address</label>
+<input name="address" type="text" placeholder="address"/>
+
+<label class="ui-hidden-accessible">username</label>
+<input name="username" type="text" placeholder="username"/>
+
+<label class="ui-hidden-accessible">password</label>
+<input name="password" type="password" placeholder="password"/>
+
+
+   <label class="ui-hidden-accessible">email</label>
+<input name="email" type="email" placeholder="email"/>
+
+<input type="submit" value="submit"/>
+
+
+</form>
+
+
+     </div>
+<div data-role="footer" id="footer">
+
+<h6>copyright 2019</h6>
+</div>
+<script type="text/javascript">
+
+document.addEventListener("deviceready", onDeviceReady, false);
+
+var db;
+
+function onDeviceReady(){
+
+alert("device ready");
+
+/*
+if(typeof(storage)!== undefined){
+localStorage.setItem("name", "Aishani");
+localStorage.setItem("work", "UTM");
+var myName=localStorage.getItem("name");
+alert(myName);
+//localStorage.clear();
+}else{
+alert("but why?");
+}*/
+
+db=window.openDatabase("myUserDB", "1.0", "simple demo", "2*1024*1024");
+db.transaction(createDB, errorCB, successCB);
+}
+
+function createDB(tx){
+tx.executeSql('CREATE TABLE IF NOT EXISTS user2(id INT, name TEXT, address TEXT, username TEXT, password PASSWORD, email EMAIL)');
+}
+
+function errorCB(err){
+alert("SQL Error:"+err.code);
+}
+
+function successCB(){
+alert("Database & table Created");
+}
+
+function submitForm(){
+db.transaction(insertDB, errorCB);
+//console.log("onsubmit");
+$.mobile.changePage("#page_profile", {reverse:false, transition:"slide"});
+
+return false;
+}
+
+function insertDB(tx){
+var name_c = $("[name='name']").val();
+var address_c = $("[name='address']").val();
+var username_c = $("[name='username']").val();
+var password_c = $("[name='password']").val();
+var email_c = $("[name='email']").val();
+var sql='INSERT INTO user2(name, address, username, password, email) VALUES(?,?,?,?,?)';
+tx.executeSql(sql, [name_c, address_c, username_c, password_c, email_c], successQueryCB, errorCB);
+}
+
+function successQueryCB(tx){
+alert("Insert Success!");
+tx.executeSql('SELECT * FROM user2', [], renderListCB, errorCB);
+}
+
+function renderListCB(tx, results){
+var htmlString = '';
+var len = results.rows.length;
+
+for(var i=0; i<len; i++){
+htmlString+='<li>'+results.rows.item(i).name+'<br>'+results.rows.item(i).address+'<br>'+results.rows.item(i).username+'<br>'+results.rows.item(i).email+'</li>';
+}
+$('#resultList').html(htmlString);
+$('#resultList').listview('refresh');
+}
+
+</script>
+
+</div>
+</div>
+
+<div data-role="page" id="page_profile" data-theme="a">
+  <div data-role="header" id="head">
+    <h3>GO GREEN!</h3>
+<div data-role="navbar">
+      <ul>
+        <li><a href="#pageone" data-icon="home">Home</a></li>
+          <li><a href="#pagetwo" data-icon="recycle">Recycle</a></li>
+            <li><a href="#pagethree" data-icon="location" class="ui-btn-active ui-state-persist">Disposal</a></li>
+      </ul>
+  </div>
+  </div>
+
+<div data-role="main" class="ui-content">
+
+  <div class="card">
+     <h3 style="text-align:center">Profile</h3>
+   <img src="profile.png" alt="user" style="width:100%">
+
+   <div id="output">
+ <ul data-role="listview" id="resultList">
+ </ul>
+ </div>
+
+ </div>
+<a href="#page_profile" id="btn" class="ui-btn  ui-btn-a" onclick="myFunction()"  >Registration</a>
+
+</div>
+
+
+<div data-role="footer">
+<div data-role="navbar">
+ <ul>
+<li><a href="#pageone" data-icon="home"></a></li>
+   <li><a href="#" data-icon="calendar"></a></li>
+     <li><a href="#" data-icon="comment"></a></li>
+       <li><a href="#page_profile" data-icon="user"></a></li>
+ </ul>
+ </div>
+</div>
+
+<script>
+function myFunction() {
+  document.getElementById("btn").innerHTML = "logout";
+}
+</script>
+</div>
+
+
+
+
+
+
+</body>
+
+</html>
